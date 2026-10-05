@@ -18,353 +18,401 @@
 <body>
 
 
-    <header>
+<!-- =========================================
+     HEADER
+========================================= -->
 
-        <div class="logo">
-            🎮 GameDev Hub
+<header>
+
+    <div class="logo">
+        🎮 GameDev Hub
+    </div>
+
+    <nav>
+
+        <a href="admin.html">
+            Dashboard
+        </a>
+
+        <a href="index.html"
+           onclick="logout()">
+            Logout
+        </a>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================
+     ADMIN DASHBOARD
+========================================= -->
+
+<main class="admin-container">
+
+
+    <!-- HEADER -->
+
+    <div class="admin-heading">
+
+        <div>
+
+            <div class="admin-badge">
+                ⚡ ADMIN CONTROL CENTER
+            </div>
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage games, tournaments and registered users.
+            </p>
+
         </div>
 
-        <nav>
-
-            <a href="admin.html">
-                Dashboard
-            </a>
-
-            <a href="#" onclick="logout()">
-                Logout
-            </a>
-
-        </nav>
-
-    </header>
+    </div>
 
 
-    <main class="admin-container">
 
-        <h1>Admin Dashboard</h1>
+    <!-- =====================================
+         STATS
+    ====================================== -->
 
-        <p>
-            Welcome, Admin!
-        </p>
-
-
-        <!-- ADMIN OPTIONS -->
-
-        <section class="admin-grid">
+    <section class="admin-stats">
 
 
-            <!-- ADD GAME -->
+        <div class="stat-card">
 
-            <div class="admin-card">
+            <div class="stat-icon">
+                🎮
+            </div>
 
-                <h2>➕ Add Game</h2>
+            <div>
 
-                <form onsubmit="addGame(event)">
+                <span>
+                    Total Games
+                </span>
 
-                    <input
-                        type="text"
-                        id="gameName"
-                        placeholder="Game Name"
-                        required
-                    >
-
-                    <input
-                        type="text"
-                        id="developer"
-                        placeholder="Developer Name"
-                        required
-                    >
-
-                    <input
-                        type="text"
-                        id="genre"
-                        placeholder="Genre"
-                        required
-                    >
-
-                    <button type="submit">
-                        Add Game
-                    </button>
-
-                </form>
+                <strong id="gameCount">
+                    0
+                </strong>
 
             </div>
 
+        </div>
 
-            <!-- GAME LIST -->
 
-            <div class="admin-card">
 
-                <h2>🎮 Games</h2>
+        <div class="stat-card">
 
-                <div id="gameList">
+            <div class="stat-icon">
+                🏆
+            </div>
+
+            <div>
+
+                <span>
+                    Tournaments
+                </span>
+
+                <strong id="matchCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                👥
+            </div>
+
+            <div>
+
+                <span>
+                    Registered Users
+                </span>
+
+                <strong id="userCount">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =====================================
+         ADMIN GRID
+    ====================================== -->
+
+    <section class="admin-grid">
+
+
+        <!-- =================================
+             ADD GAME
+        ================================== -->
+
+        <div class="admin-card">
+
+            <div class="card-icon">
+                🎮
+            </div>
+
+            <h2>
+                Add New Game
+            </h2>
+
+            <p class="card-description">
+                Add a new game to the GameDev Hub platform.
+            </p>
+
+
+            <form onsubmit="addGame(event)">
+
+
+                <input
+                    type="text"
+                    id="gameName"
+                    placeholder="Game Name"
+                    required
+                >
+
+
+                <input
+                    type="text"
+                    id="developer"
+                    placeholder="Developer Name"
+                    required
+                >
+
+
+                <input
+                    type="text"
+                    id="genre"
+                    placeholder="Genre"
+                    required
+                >
+
+
+                <button type="submit">
+                    ➕ Add Game
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =================================
+             CREATE MATCH
+        ================================== -->
+
+        <div class="admin-card match-admin-card">
+
+            <div class="card-icon match-icon">
+                🏆
+            </div>
+
+            <h2>
+                Create Tournament
+            </h2>
+
+            <p class="card-description">
+                Create a new gaming tournament with prize pool and venue.
+            </p>
+
+
+            <form onsubmit="createMatch(event)">
+
+
+                <input
+                    type="text"
+                    id="matchName"
+                    placeholder="Tournament Name"
+                    required
+                >
+
+
+                <input
+                    type="text"
+                    id="matchGame"
+                    placeholder="Game Name e.g. BGMI"
+                    required
+                >
+
+
+                <div class="form-row">
+
+                    <input
+                        type="number"
+                        id="prizePool"
+                        placeholder="Prize Pool ₹"
+                        min="0"
+                        required
+                    >
+
+
+                    <input
+                        type="number"
+                        id="entryFee"
+                        placeholder="Entry Fee ₹"
+                        min="0"
+                        required
+                    >
 
                 </div>
 
-            </div>
+
+                <input
+                    type="text"
+                    id="venue"
+                    placeholder="Venue"
+                    required
+                >
 
 
-            <!-- USERS -->
+                <div class="form-row">
 
-            <div class="admin-card">
+                    <input
+                        type="date"
+                        id="matchDate"
+                        required
+                    >
 
-                <h2>👥 Registered Users</h2>
 
-                <div id="userList">
+                    <input
+                        type="time"
+                        id="matchTime"
+                        required
+                    >
 
                 </div>
 
+
+                <input
+                    type="number"
+                    id="maxPlayers"
+                    placeholder="Maximum Players"
+                    min="1"
+                    required
+                >
+
+
+                <button
+                    type="submit"
+                    class="create-match-btn">
+
+                    🏆 Create Tournament
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =================================
+             GAMES
+        ================================== -->
+
+        <div class="admin-card">
+
+            <div class="card-icon">
+                🎮
             </div>
 
+            <h2>
+                Available Games
+            </h2>
 
-        </section>
+            <div id="gameList">
 
-    </main>
+            </div>
 
+        </div>
 
-    <script>
 
 
-        /*
-            CHECK ADMIN LOGIN
-        */
+        <!-- =================================
+             MATCHES
+        ================================== -->
 
-        if (
-            localStorage.getItem("loggedIn") !== "true" ||
-            localStorage.getItem("role") !== "admin"
-        ) {
+        <div class="admin-card">
 
-            window.location.href = "login.html";
+            <div class="card-icon">
+                🏆
+            </div>
 
-        }
+            <h2>
+                Tournaments
+            </h2>
 
+            <div id="matchList">
 
-        /*
-            ADD GAME
-        */
+            </div>
 
-        function addGame(event) {
+        </div>
 
-            event.preventDefault();
 
 
-            let gameName =
-                document.getElementById("gameName").value;
+        <!-- =================================
+             USERS
+        ================================== -->
 
-            let developer =
-                document.getElementById("developer").value;
+        <div class="admin-card admin-wide">
 
-            let genre =
-                document.getElementById("genre").value;
+            <div class="card-icon">
+                👥
+            </div>
 
+            <h2>
+                Registered Users
+            </h2>
 
-            let games =
-                JSON.parse(
-                    localStorage.getItem("games")
-                ) || [];
+            <div id="userList">
 
+            </div>
 
-            let game = {
+        </div>
 
-                name: gameName,
 
-                developer: developer,
+    </section>
 
-                genre: genre
 
-            };
+</main>
 
 
-            games.push(game);
 
+<!-- =========================================
+     FOOTER
+========================================= -->
 
-            localStorage.setItem(
-                "games",
-                JSON.stringify(games)
-            );
+<footer>
 
+    <p>
+        © 2026 GameDev Hub | SDC Project
+    </p>
 
-            alert("Game added successfully!");
+</footer>
 
 
-            document.getElementById("gameName").value = "";
 
-            document.getElementById("developer").value = "";
-
-            document.getElementById("genre").value = "";
-
-
-            displayGames();
-
-        }
-
-
-        /*
-            DISPLAY GAMES
-        */
-
-        function displayGames() {
-
-            let games =
-                JSON.parse(
-                    localStorage.getItem("games")
-                ) || [];
-
-
-            let gameList =
-                document.getElementById("gameList");
-
-
-            gameList.innerHTML = "";
-
-
-            if (games.length === 0) {
-
-                gameList.innerHTML =
-                    "<p>No games available.</p>";
-
-                return;
-
-            }
-
-
-            games.forEach(function(game, index) {
-
-                gameList.innerHTML += `
-
-                    <div class="game-item">
-
-                        <h3>${game.name}</h3>
-
-                        <p>
-                            Developer: ${game.developer}
-                        </p>
-
-                        <p>
-                            Genre: ${game.genre}
-                        </p>
-
-                        <button
-                            onclick="deleteGame(${index})">
-                            Delete
-                        </button>
-
-                    </div>
-
-                `;
-
-            });
-
-        }
-
-
-        /*
-            DELETE GAME
-        */
-
-        function deleteGame(index) {
-
-            let games =
-                JSON.parse(
-                    localStorage.getItem("games")
-                ) || [];
-
-
-            games.splice(index, 1);
-
-
-            localStorage.setItem(
-                "games",
-                JSON.stringify(games)
-            );
-
-
-            displayGames();
-
-        }
-
-
-        /*
-            DISPLAY USERS
-        */
-
-        function displayUsers() {
-
-            let users =
-                JSON.parse(
-                    localStorage.getItem("users")
-                ) || [];
-
-
-            let userList =
-                document.getElementById("userList");
-
-
-            userList.innerHTML = "";
-
-
-            if (users.length === 0) {
-
-                userList.innerHTML =
-                    "<p>No registered users.</p>";
-
-                return;
-
-            }
-
-
-            users.forEach(function(user) {
-
-                userList.innerHTML += `
-
-                    <div class="game-item">
-
-                        <p>
-                            <strong>Name:</strong>
-                            ${user.name}
-                        </p>
-
-                        <p>
-                            <strong>Email:</strong>
-                            ${user.email}
-                        </p>
-
-                    </div>
-
-                `;
-
-            });
-
-        }
-
-
-        /*
-            LOGOUT
-        */
-
-        function logout() {
-
-            localStorage.removeItem("loggedIn");
-
-            localStorage.removeItem("role");
-
-            localStorage.removeItem("userEmail");
-
-            window.location.href =
-                "index.html";
-
-        }
-
-
-        /*
-            LOAD DATA
-        */
-
-        displayGames();
-
-        displayUsers();
-
-    </script>
+<script src="script.js"></script>
 
 
 </body>

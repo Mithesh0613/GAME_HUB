@@ -8,9 +8,12 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Games - GameDev Hub</title>
+    <title>
+        Games & Matches - GameDev Hub
+    </title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet"
+          href="style.css">
 
 </head>
 
@@ -18,249 +21,240 @@
 <body>
 
 
-    <!-- HEADER -->
+<!-- =========================================
+     HEADER
+========================================= -->
 
-    <header>
+<header>
 
-        <div class="logo">
-            🎮 GameDev Hub
-        </div>
-
-        <nav>
-
-            <a href="user.html">
-                Dashboard
-            </a>
-
-            <a href="games.html">
-                Games
-            </a>
-
-            <a href="#" onclick="logout()">
-                Logout
-            </a>
-
-        </nav>
-
-    </header>
+    <div class="logo">
+        🎮 GameDev Hub
+    </div>
 
 
-    <!-- GAMES -->
+    <nav>
 
-    <main class="games-container">
+        <a href="user.html">
+            Dashboard
+        </a>
 
-        <div class="page-title">
+        <a href="games.html"
+           class="active-link">
+            Games & Matches
+        </a>
 
-            <h1>🎮 Available Games</h1>
+        <a href="#"
+           onclick="logout()">
+            Logout
+        </a>
 
-            <p>
-                Explore games available on GameDev Hub.
-            </p>
+    </nav>
 
-        </div>
+</header>
 
 
-        <!-- SEARCH -->
 
-        <div class="search-box">
+<!-- =========================================
+     MAIN
+========================================= -->
 
-            <input
-                type="text"
-                id="search"
-                placeholder="Search games..."
-                onkeyup="searchGames()"
-            >
+<main class="games-container">
 
+
+    <!-- =====================================
+         HERO
+    ====================================== -->
+
+    <section class="games-hero">
+
+        <div class="hero-small-badge">
+            ⚡ GAMEDEV HUB ARENA
         </div>
 
 
-        <!-- GAME GRID -->
+        <h1>
+            Games
+            <span>&</span>
+            Tournaments
+        </h1>
+
+
+        <p>
+            Discover games, join tournaments and compete for amazing prizes.
+        </p>
+
+
+        <div class="hero-stats">
+
+            <div>
+                <strong>
+                    🎮
+                </strong>
+
+                <span>
+                    Games
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    🏆
+                </strong>
+
+                <span>
+                    Tournaments
+                </span>
+            </div>
+
+
+            <div>
+                <strong>
+                    ⚡
+                </strong>
+
+                <span>
+                    Compete
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================
+         SEARCH
+    ====================================== -->
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            🔍
+        </span>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search games, tournaments or venues..."
+            onkeyup="searchGames()"
+        >
+
+    </div>
+
+
+
+    <!-- =====================================
+         GAMES SECTION
+    ====================================== -->
+
+    <section class="content-section">
+
+
+        <div class="section-title">
+
+            <div>
+
+                <div class="section-label">
+                    🎮 GAME LIBRARY
+                </div>
+
+                <h2>
+                    Available Games
+                </h2>
+
+                <p>
+                    Explore games available on GameDev Hub.
+                </p>
+
+            </div>
+
+        </div>
+
 
         <section
             class="games-grid"
-            id="gamesGrid"
-        >
+            id="gamesGrid">
 
         </section>
 
-    </main>
 
+    </section>
 
-    <script>
 
 
-        /*
-            CHECK USER LOGIN
-        */
+    <!-- =====================================
+         TOURNAMENT SECTION
+    ====================================== -->
 
-        if (
-            localStorage.getItem("loggedIn") !== "true" ||
-            localStorage.getItem("role") !== "user"
-        ) {
+    <section class="content-section tournament-section">
 
-            window.location.href =
-                "login.html";
 
-        }
+        <div class="section-title">
 
+            <div>
 
-        /*
-            DISPLAY GAMES
-        */
+                <div class="section-label tournament-label">
+                    🏆 COMPETITIVE ARENA
+                </div>
 
-        function displayGames(gameData) {
+                <h2>
+                    Live Tournaments
+                </h2>
 
-            let gamesGrid =
-                document.getElementById("gamesGrid");
+                <p>
+                    Compete, win and take home the prize!
+                </p>
 
+            </div>
 
-            gamesGrid.innerHTML = "";
 
+            <div class="live-badge">
 
-            if (gameData.length === 0) {
+                <span class="live-dot">
+                    ●
+                </span>
 
-                gamesGrid.innerHTML = `
+                LIVE EVENTS
 
-                    <div class="no-games">
+            </div>
 
-                        <h2>No Games Found 🎮</h2>
+        </div>
 
-                        <p>
-                            Ask the admin to add some games.
-                        </p>
 
-                    </div>
 
-                `;
+        <!-- MATCHES -->
 
-                return;
+        <section
+            class="matches-grid"
+            id="matchesGrid">
 
-            }
+        </section>
 
 
-            gameData.forEach(function(game) {
+    </section>
 
-                gamesGrid.innerHTML += `
 
-                    <div class="game-card">
+</main>
 
-                        <div class="game-image">
-                            🎮
-                        </div>
 
-                        <div class="game-content">
 
-                            <h2>
-                                ${game.name}
-                            </h2>
+<!-- =========================================
+     FOOTER
+========================================= -->
 
-                            <p>
-                                <strong>Developer:</strong>
-                                ${game.developer}
-                            </p>
+<footer>
 
-                            <p>
-                                <strong>Genre:</strong>
-                                ${game.genre}
-                            </p>
+    <p>
+        © 2026 GameDev Hub | SDC Project
+    </p>
 
-                            <button
-                                onclick="playGame('${game.name}')">
-                                View Game
-                            </button>
+</footer>
 
-                        </div>
 
-                    </div>
 
-                `;
-
-            });
-
-        }
-
-
-        /*
-            GET GAMES FROM LOCAL STORAGE
-        */
-
-        let games =
-            JSON.parse(
-                localStorage.getItem("games")
-            ) || [];
-
-
-        displayGames(games);
-
-
-        /*
-            SEARCH GAMES
-        */
-
-        function searchGames() {
-
-            let search =
-                document.getElementById("search")
-                .value
-                .toLowerCase();
-
-
-            let filteredGames =
-                games.filter(function(game) {
-
-                    return (
-                        game.name
-                            .toLowerCase()
-                            .includes(search) ||
-
-                        game.genre
-                            .toLowerCase()
-                            .includes(search) ||
-
-                        game.developer
-                            .toLowerCase()
-                            .includes(search)
-                    );
-
-                });
-
-
-            displayGames(filteredGames);
-
-        }
-
-
-        /*
-            VIEW GAME
-        */
-
-        function playGame(gameName) {
-
-            alert(
-                "You selected: " + gameName
-            );
-
-        }
-
-
-        /*
-            LOGOUT
-        */
-
-        function logout() {
-
-            localStorage.removeItem("loggedIn");
-
-            localStorage.removeItem("role");
-
-            localStorage.removeItem("userEmail");
-
-            window.location.href =
-                "index.html";
-
-        }
-
-    </script>
+<script src="script.js"></script>
 
 
 </body>
