@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - GameDev Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <header>
+
+        <div class="logo">
+            🎮 GameDev Hub
+        </div>
+
+        <nav>
+
+            <a href="admin.html">
+                Dashboard
+            </a>
+
+            <a href="#" onclick="logout()">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <main class="admin-container">
+
+        <h1>Admin Dashboard</h1>
+
+        <p>
+            Welcome, Admin!
+        </p>
+
+
+        <!-- ADMIN OPTIONS -->
+
+        <section class="admin-grid">
+
+
+            <!-- ADD GAME -->
+
+            <div class="admin-card">
+
+                <h2>➕ Add Game</h2>
+
+                <form onsubmit="addGame(event)">
+
+                    <input
+                        type="text"
+                        id="gameName"
+                        placeholder="Game Name"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="developer"
+                        placeholder="Developer Name"
+                        required
+                    >
+
+                    <input
+                        type="text"
+                        id="genre"
+                        placeholder="Genre"
+                        required
+                    >
+
+                    <button type="submit">
+                        Add Game
+                    </button>
+
+                </form>
+
+            </div>
+
+
+            <!-- GAME LIST -->
+
+            <div class="admin-card">
+
+                <h2>🎮 Games</h2>
+
+                <div id="gameList">
+
+                </div>
+
+            </div>
+
+
+            <!-- USERS -->
+
+            <div class="admin-card">
+
+                <h2>👥 Registered Users</h2>
+
+                <div id="userList">
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+
+        /*
+            CHECK ADMIN LOGIN
+        */
+
+        if (
+            localStorage.getItem("loggedIn") !== "true" ||
+            localStorage.getItem("role") !== "admin"
+        ) {
+
+            window.location.href = "login.html";
+
+        }
+
+
+        /*
+            ADD GAME
+        */
+
+        function addGame(event) {
+
+            event.preventDefault();
+
+
+            let gameName =
+                document.getElementById("gameName").value;
+
+            let developer =
+                document.getElementById("developer").value;
+
+            let genre =
+                document.getElementById("genre").value;
+
+
+            let games =
+                JSON.parse(
+                    localStorage.getItem("games")
+                ) || [];
+
+
+            let game = {
+
+                name: gameName,
+
+                developer: developer,
+
+                genre: genre
+
+            };
+
+
+            games.push(game);
+
+
+            localStorage.setItem(
+                "games",
+                JSON.stringify(games)
+            );
+
+
+            alert("Game added successfully!");
+
+
+            document.getElementById("gameName").value = "";
+
+            document.getElementById("developer").value = "";
+
+            document.getElementById("genre").value = "";
+
+
+            displayGames();
+
+        }
+
+
+        /*
+            DISPLAY GAMES
+        */
+
+        function displayGames() {
+
+            let games =
+                JSON.parse(
+                    localStorage.getItem("games")
+                ) || [];
+
+
+            let gameList =
+                document.getElementById("gameList");
+
+
+            gameList.innerHTML = "";
+
+
+            if (games.length === 0) {
+
+                gameList.innerHTML =
+                    "<p>No games available.</p>";
+
+                return;
+
+            }
+
+
+            games.forEach(function(game, index) {
+
+                gameList.innerHTML += `
+
+                    <div class="game-item">
+
+                        <h3>${game.name}</h3>
+
+                        <p>
+                            Developer: ${game.developer}
+                        </p>
+
+                        <p>
+                            Genre: ${game.genre}
+                        </p>
+
+                        <button
+                            onclick="deleteGame(${index})">
+                            Delete
+                        </button>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        /*
+            DELETE GAME
+        */
+
+        function deleteGame(index) {
+
+            let games =
+                JSON.parse(
+                    localStorage.getItem("games")
+                ) || [];
+
+
+            games.splice(index, 1);
+
+
+            localStorage.setItem(
+                "games",
+                JSON.stringify(games)
+            );
+
+
+            displayGames();
+
+        }
+
+
+        /*
+            DISPLAY USERS
+        */
+
+        function displayUsers() {
+
+            let users =
+                JSON.parse(
+                    localStorage.getItem("users")
+                ) || [];
+
+
+            let userList =
+                document.getElementById("userList");
+
+
+            userList.innerHTML = "";
+
+
+            if (users.length === 0) {
+
+                userList.innerHTML =
+                    "<p>No registered users.</p>";
+
+                return;
+
+            }
+
+
+            users.forEach(function(user) {
+
+                userList.innerHTML += `
+
+                    <div class="game-item">
+
+                        <p>
+                            <strong>Name:</strong>
+                            ${user.name}
+                        </p>
+
+                        <p>
+                            <strong>Email:</strong>
+                            ${user.email}
+                        </p>
+
+                    </div>
+
+                `;
+
+            });
+
+        }
+
+
+        /*
+            LOGOUT
+        */
+
+        function logout() {
+
+            localStorage.removeItem("loggedIn");
+
+            localStorage.removeItem("role");
+
+            localStorage.removeItem("userEmail");
+
+            window.location.href =
+                "index.html";
+
+        }
+
+
+        /*
+            LOAD DATA
+        */
+
+        displayGames();
+
+        displayUsers();
+
+    </script>
+
+
+</body>
+
+</html>

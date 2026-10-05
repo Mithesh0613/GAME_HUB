@@ -1,0 +1,638 @@
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background: #f4f6f8;
+
+    color: #222;
+
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 50px;
+
+    background: #171717;
+
+    color: white;
+}
+
+.logo {
+
+    font-size: 24px;
+
+    font-weight: bold;
+}
+
+nav {
+
+    display: flex;
+
+    gap: 25px;
+
+    align-items: center;
+}
+
+nav a {
+
+    color: white;
+
+    font-size: 16px;
+}
+
+nav a:hover {
+
+    color: #00bcd4;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+
+    background: #00a8cc;
+
+    color: white;
+
+    border: none;
+
+    padding: 12px 22px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    transition: 0.2s;
+}
+
+button:hover {
+
+    background: #0086a3;
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================
+   HOME PAGE
+========================= */
+
+.hero {
+
+    min-height: 500px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px;
+}
+
+.hero-content {
+
+    max-width: 750px;
+}
+
+.hero h1 {
+
+    font-size: 50px;
+
+    margin-bottom: 20px;
+}
+
+.hero p {
+
+    font-size: 20px;
+
+    line-height: 1.6;
+
+    margin-bottom: 30px;
+}
+
+.buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+}
+
+
+/* =========================
+   FEATURES
+========================= */
+
+.features {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    padding: 50px;
+}
+
+.feature-card {
+
+    background: white;
+
+    padding: 30px;
+
+    border-radius: 10px;
+
+    text-align: center;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h2 {
+
+    margin-bottom: 15px;
+}
+
+.feature-card p {
+
+    line-height: 1.5;
+
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   LOGIN / SIGNUP
+========================= */
+
+.login-container {
+
+    min-height: 85vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px;
+}
+
+.login-box {
+
+    width: 400px;
+
+    max-width: 100%;
+
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+.login-box h1 {
+
+    margin-bottom: 10px;
+
+    text-align: center;
+}
+
+.login-box > p {
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    color: #666;
+}
+
+.login-box form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+.login-box label {
+
+    font-weight: bold;
+
+    margin-top: 8px;
+}
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 6px;
+
+    font-size: 15px;
+
+    outline: none;
+}
+
+input:focus,
+select:focus {
+
+    border-color: #00a8cc;
+}
+
+
+/* =========================
+   ADMIN DASHBOARD
+========================= */
+
+.admin-container {
+
+    padding: 40px 60px;
+}
+
+.admin-container h1 {
+
+    margin-bottom: 10px;
+}
+
+.admin-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+
+    margin-top: 30px;
+}
+
+.admin-card {
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-card h2 {
+
+    margin-bottom: 20px;
+}
+
+.admin-card form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.game-item {
+
+    background: #f1f3f5;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+
+    border-radius: 6px;
+}
+
+.game-item h3 {
+
+    margin-bottom: 8px;
+}
+
+.game-item p {
+
+    margin-bottom: 6px;
+}
+
+
+/* =========================
+   USER DASHBOARD
+========================= */
+
+.user-container {
+
+    padding: 40px 60px;
+}
+
+.welcome-box {
+
+    background: white;
+
+    padding: 40px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.1);
+
+    margin-bottom: 30px;
+}
+
+.welcome-box h1 {
+
+    margin-bottom: 15px;
+
+    font-size: 35px;
+}
+
+.welcome-box p {
+
+    margin-bottom: 25px;
+
+    color: #666;
+}
+
+.user-features {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+.big-icon {
+
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+
+/* =========================
+   GAMES PAGE
+========================= */
+
+.games-container {
+
+    padding: 40px 60px;
+}
+
+.page-title {
+
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+
+    font-size: 38px;
+
+    margin-bottom: 10px;
+}
+
+.page-title p {
+
+    color: #666;
+}
+
+
+/* SEARCH */
+
+.search-box {
+
+    max-width: 600px;
+
+    margin: 0 auto 35px;
+}
+
+.search-box input {
+
+    padding: 15px;
+
+    font-size: 16px;
+}
+
+
+/* GAME GRID */
+
+.games-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* GAME CARD */
+
+.game-card {
+
+    background: white;
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.1);
+
+    transition: 0.2s;
+}
+
+.game-card:hover {
+
+    transform: translateY(-5px);
+}
+
+.game-image {
+
+    height: 150px;
+
+    background: #171717;
+
+    color: white;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-size: 60px;
+}
+
+.game-content {
+
+    padding: 20px;
+}
+
+.game-content h2 {
+
+    margin-bottom: 12px;
+}
+
+.game-content p {
+
+    margin-bottom: 8px;
+
+    color: #555;
+}
+
+.game-content button {
+
+    margin-top: 10px;
+}
+
+
+/* NO GAMES */
+
+.no-games {
+
+    grid-column: 1 / -1;
+
+    text-align: center;
+
+    padding: 60px;
+
+    background: white;
+
+    border-radius: 10px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    text-align: center;
+
+    padding: 20px;
+
+    background: #171717;
+
+    color: white;
+
+    margin-top: 40px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .features,
+    .admin-grid,
+    .user-features,
+    .games-grid {
+
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    header {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 20px;
+    }
+
+    nav {
+
+        gap: 15px;
+
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+    .features,
+    .admin-grid,
+    .user-features,
+    .games-grid {
+
+        grid-template-columns: 1fr;
+    }
+
+    .hero h1 {
+
+        font-size: 35px;
+    }
+
+    .hero p {
+
+        font-size: 17px;
+    }
+
+    .admin-container,
+    .user-container,
+    .games-container {
+
+        padding: 25px 20px;
+    }
+
+    .welcome-box h1 {
+
+        font-size: 28px;
+    }
+
+}

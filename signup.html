@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up - GameDev Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            🎮 GameDev Hub
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="login.html">Login</a>
+        </nav>
+
+    </header>
+
+
+    <!-- SIGNUP -->
+
+    <main class="login-container">
+
+        <div class="login-box">
+
+            <h1>Create Account</h1>
+
+            <p>Join GameDev Hub today!</p>
+
+
+            <form onsubmit="signup(event)">
+
+                <label>Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create a password"
+                    required
+                >
+
+
+                <label>Confirm Password</label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    required
+                >
+
+
+                <button type="submit">
+                    Create Account
+                </button>
+
+            </form>
+
+
+            <p id="message"></p>
+
+
+            <p>
+                Already have an account?
+                <a href="login.html">Login</a>
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        function signup(event) {
+
+            event.preventDefault();
+
+
+            let name =
+                document.getElementById("name").value;
+
+            let email =
+                document.getElementById("email").value;
+
+            let password =
+                document.getElementById("password").value;
+
+            let confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            /*
+                CHECK PASSWORD
+            */
+
+            if (password !== confirmPassword) {
+
+                document.getElementById("message").innerText =
+                    "Passwords do not match.";
+
+                document.getElementById("message").style.color =
+                    "red";
+
+                return;
+            }
+
+
+            /*
+                GET EXISTING USERS
+            */
+
+            let users =
+                JSON.parse(
+                    localStorage.getItem("users")
+                ) || [];
+
+
+            /*
+                CHECK EXISTING EMAIL
+            */
+
+            let existingUser =
+                users.find(function(user) {
+
+                    return user.email === email;
+
+                });
+
+
+            if (existingUser) {
+
+                document.getElementById("message").innerText =
+                    "Email already registered.";
+
+                document.getElementById("message").style.color =
+                    "red";
+
+                return;
+            }
+
+
+            /*
+                CREATE USER
+            */
+
+            let newUser = {
+
+                name: name,
+
+                email: email,
+
+                password: password
+
+            };
+
+
+            users.push(newUser);
+
+
+            /*
+                SAVE TO LOCAL STORAGE
+            */
+
+            localStorage.setItem(
+                "users",
+                JSON.stringify(users)
+            );
+
+
+            document.getElementById("message").innerText =
+                "Account created successfully!";
+
+            document.getElementById("message").style.color =
+                "green";
+
+
+            /*
+                GO TO LOGIN
+            */
+
+            setTimeout(function() {
+
+                window.location.href =
+                    "login.html";
+
+            }, 1000);
+
+        }
+
+    </script>
+
+</body>
+
+</html>

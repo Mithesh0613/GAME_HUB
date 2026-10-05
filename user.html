@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Dashboard - GameDev Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- HEADER -->
+
+    <header>
+
+        <div class="logo">
+            🎮 GameDev Hub
+        </div>
+
+        <nav>
+
+            <a href="user.html">
+                Dashboard
+            </a>
+
+            <a href="games.html">
+                Games
+            </a>
+
+            <a href="#" onclick="logout()">
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- USER DASHBOARD -->
+
+    <main class="user-container">
+
+        <div class="welcome-box">
+
+            <h1>
+                Welcome, <span id="userName"></span>! 👋
+            </h1>
+
+            <p>
+                Welcome to your GameDev Hub dashboard.
+            </p>
+
+            <button onclick="viewGames()">
+                Explore Games
+            </button>
+
+        </div>
+
+
+        <!-- USER FEATURES -->
+
+        <section class="user-features">
+
+
+            <div class="feature-card">
+
+                <div class="big-icon">
+                    🎮
+                </div>
+
+                <h2>Browse Games</h2>
+
+                <p>
+                    Explore games available on the platform.
+                </p>
+
+                <button onclick="viewGames()">
+                    View Games
+                </button>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="big-icon">
+                    👨‍💻
+                </div>
+
+                <h2>Game Developers</h2>
+
+                <p>
+                    Discover games created by developers.
+                </p>
+
+            </div>
+
+
+            <div class="feature-card">
+
+                <div class="big-icon">
+                    ⭐
+                </div>
+
+                <h2>Game Collection</h2>
+
+                <p>
+                    Find interesting games to explore.
+                </p>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+
+    <script>
+
+
+        /*
+            CHECK LOGIN
+        */
+
+        if (
+            localStorage.getItem("loggedIn") !== "true" ||
+            localStorage.getItem("role") !== "user"
+        ) {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+
+        /*
+            SHOW USER NAME
+        */
+
+        let email =
+            localStorage.getItem("userEmail");
+
+
+        let users =
+            JSON.parse(
+                localStorage.getItem("users")
+            ) || [];
+
+
+        let user =
+            users.find(function(account) {
+
+                return account.email === email;
+
+            });
+
+
+        if (user) {
+
+            document.getElementById("userName").innerText =
+                user.name;
+
+        }
+
+
+        /*
+            GO TO GAMES
+        */
+
+        function viewGames() {
+
+            window.location.href =
+                "games.html";
+
+        }
+
+
+        /*
+            LOGOUT
+        */
+
+        function logout() {
+
+            localStorage.removeItem("loggedIn");
+
+            localStorage.removeItem("role");
+
+            localStorage.removeItem("userEmail");
+
+            window.location.href =
+                "index.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>
